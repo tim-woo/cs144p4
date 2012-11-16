@@ -85,7 +85,7 @@ public class SearchServlet extends HttpServlet implements Servlet {
 		    int num = Integer.parseInt(params[1]);
 		    for (int i=0; i<length;i++) {
 		    	num++;
-		    	result += "<li>" + num + ". " + "<a href=\"/eBay/item?itemID=" + results[i].getItemId() + "\">" + results[i].getName() + "</a></li>";
+		    	result += num + ". " + "<a href=\"/eBay/item?itemID=" + results[i].getItemId() + "\">" + results[i].getName() + "</a><br>";
 		    }
 	    	request.setAttribute("result", result);
 

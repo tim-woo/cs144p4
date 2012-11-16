@@ -17,7 +17,6 @@
     <h5>Showing <%= request.getAttribute("total") %> results.</h5>
 
     <%= request.getAttribute("result")  %>
-
     <br><br>
 		    
     <%
