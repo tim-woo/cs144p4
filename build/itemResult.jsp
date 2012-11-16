@@ -16,9 +16,17 @@
 
    <%
         out.println(request.getAttribute("xml"));
-    
-   %>
 
+   %>
+   <br>
+   <br>
+   <p>Name: <%= request.getAttribute("name")%></p>
+  <p> Description: <%= request.getAttribute("Description")%></p>
+   <p>Seller: <%= request.getAttribute("SellerID")%></p>
+  <p>Seller Rating: <%= request.getAttribute("SellerRating")%></p>
+
+   <p>Started: <%= request.getAttribute("Started")%></p>
+   <p>Ends: <%= request.getAttribute("Ends")%></p>
 
    </form>
 
