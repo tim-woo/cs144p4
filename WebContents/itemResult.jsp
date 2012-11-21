@@ -11,6 +11,58 @@
 	<input type="submit" value="Submit"><br>
 	</form>
 
+	<style type="text/css"> 
+		html { height: 100% } 
+		body { height: 100%; margin: 0px; padding: 0px } 
+		#map_canvas { height: 100% } 
+	</style> 
+	
+	<%
+		String addr = request.getAttribute("Location").toString() + ", " + request.getAttribute("Country").toString();
+		out.println("<input id=\"text_address\" type=\"hidden\" value=\"" + addr + "\">");
+	%>
+
+	<script type="text/javascript" 
+    src="http://maps.google.com/maps/api/js?sensor=false">
+    </script>
+
+	<script type="text/javascript">
+		function initialize() {
+			var geocoder = new google.maps.Geocoder(); 
+			var latlng = new google.maps.LatLng(34.063509,-118.44541); 
+			var myOptions = { 
+				zoom: 8, // default is 8  
+				center: latlng, 
+				mapTypeId: google.maps.MapTypeId.ROADMAP 
+			}; 
+			var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+		}
+	</script>
+
+	<script type="text/javascript">
+      var markers = new Array();
+      var firstLoc;
+
+      function myGeocodeFirst() {   
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( {'address': document.getElementById("text_address").value },
+          	function(results, status) {
+	            if (status == google.maps.GeocoderStatus.OK) {
+	              	firstLoc = results[0].geometry.location;
+	              	var myOptions = { 
+						zoom: 8, // default is 8  
+						center: firstLoc, 
+						mapTypeId: google.maps.MapTypeId.ROADMAP 
+					}; 
+					var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);              
+	            } 
+	            else {
+	              document.getElementById("text_status").value = status;
+	            }
+          	}
+        ); }
+	</script> 
+
 	<%
 		String result = request.getAttribute("total").toString();
 		if (result.equals("1"))
@@ -28,11 +80,11 @@
 			out.println("<p><b>Categories</b>: " + request.getAttribute("Categories") + "</p>");
 			out.println("<p><b>Location</b>: " + request.getAttribute("Location") + "</p>");
 			out.println("<p><b>Country</b>: " + request.getAttribute("Country") + "</p>");
-	
-
 		}
 	%>
-	
+
+	<body onload="myGeocodeFirst()"> 
+	<div id="map_canvas" style="width:500px; height:500px;"></div> 
 <!--
 	<p><b>Name</b>: <%= request.getAttribute("name")%></p>
 	<p><b>Description</b>: <%= request.getAttribute("Description")%></p>
