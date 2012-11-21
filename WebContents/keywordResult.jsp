@@ -1,13 +1,45 @@
 <html>
 <head>
     <title><%= request.getAttribute("title") %></title>
+
+    <script type="text/javascript">
+
+        var xmlHttp;
+
+        function sendAjaxRequest(input)
+        {
+            document.body.innerHTML = "hello friend";
+          xmlHttp = new XMLHttpRequest(); // works only for Firefox, Safari, ...
+
+          // set the server response handler
+          xmlHttp.onreadystatechange = showSuggestion;
+
+          // send the request to the server
+          xmlHttp.open("GET", "/suggest?q="+input);
+          xmlHttp.send(null);
+        }
+
+        function showSuggestion() 
+        {
+          if (xmlHttp.readyState == 4) {
+            response = xmlHttp.responseText;
+            response = response.replace(/</g, "&lt;");
+            response = response.replace(/>/g, "&gt;");
+            document.getElementById("suggestion").innerHTML = response;
+          }
+        }
+
+    </script>
+
+
 </head>
 <body>
 	<form name="input" action="search" method="get">
 	<%
 	    String q = request.getParameter("q");
-		out.println("Search: <input type=\"text\" name=\"q\" value=\"" + q +"\">");
+		out.println("Search: <input onKeyUp='sendAjaxRequest(this.value);' type=\"text\" name=\"q\" value=\"" + q +"\">");
 	%>
+    <b>Suggestion</b>: <pre id="suggestion"></pre>
 
 	<input type="hidden" name="numResultsToSkip" value="0">
 	<input type="hidden" name="numResultsToReturn" value="30">

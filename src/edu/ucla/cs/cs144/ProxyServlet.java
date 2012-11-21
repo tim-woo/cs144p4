@@ -15,5 +15,12 @@ public class ProxyServlet extends HttpServlet implements Servlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         // your codes here
+
+        String query = request.getQueryString();
+  		if (query != null) 
+  		{
+  			String search = request.getParameter("q");
+
+  		}
     }
 }
