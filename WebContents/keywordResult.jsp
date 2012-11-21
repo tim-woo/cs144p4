@@ -8,7 +8,7 @@
 
         function sendAjaxRequest(input)
         {
-            document.body.innerHTML = "hello friend";
+            // document.body.innerHTML = "hello friend";
           xmlHttp = new XMLHttpRequest(); // works only for Firefox, Safari, ...
 
           // set the server response handler
@@ -42,7 +42,7 @@
     <b>Suggestion</b>: <pre id="suggestion"></pre>
 
 	<input type="hidden" name="numResultsToSkip" value="0">
-	<input type="hidden" name="numResultsToReturn" value="30">
+	<input type="hidden" name="numResultsToReturn" value="10">
 
 	<input type="submit" value="Submit"><br>
 
@@ -58,12 +58,16 @@
     Integer showNum = Integer.parseInt(show);
     Integer nextNum = skipNum + showNum;
     Integer prevNum = skipNum - showNum;
+    String total = request.getAttribute("total").toString();
 
     if (skipNum>0) {
     	out.println("<a href=\"/eBay/search?q=" + q + "&numResultsToSkip=" + prevNum + "&numResultsToReturn=" + showNum + "\">Previous</a>");
 	}
-    out.println("<a href=\"/eBay/search?q=" + q + "&numResultsToSkip=" + nextNum + "&numResultsToReturn=" + showNum + "\">Next</a>");
-   	%>
+    if (total.equals("10"))
+    {
+        out.println("<a href=\"/eBay/search?q=" + q + "&numResultsToSkip=" + nextNum + "&numResultsToReturn=" + showNum + "\">Next</a>");
+   	}
+    %>
    
 </body>
 </html>
