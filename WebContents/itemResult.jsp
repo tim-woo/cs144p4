@@ -11,6 +11,29 @@
 	<input type="submit" value="Submit"><br>
 	</form>
 
+	<%
+		String result = request.getAttribute("total").toString();
+		if (result.equals("1"))
+		{
+			out.println("<p><b>Name</b>: " + request.getAttribute("name") + "</p>");
+			out.println("<p><b>Description</b>: " + request.getAttribute("Description") + "</p>");
+			out.println("<p><b>Seller</b>: " + request.getAttribute("SellerID") + "</p>");
+			out.println("<p><b>Seller Rating</b>: " + request.getAttribute("SellerRating") + "</p>");
+			out.println("<p><b>Started</b>: " + request.getAttribute("Started") + "</p>");
+			out.println("<p><b>Ends</b>: " + request.getAttribute("Ends") + "</p>");
+			out.println("<p><b>Currently</b>: " + request.getAttribute("Currently") + "</p>");
+			out.println("<p><b>Number of Bids</b>: " + request.getAttribute("Number_of_Bids") + "</p>");
+			out.println("<p><b>Bids</b>: " + request.getAttribute("Bids") + "</p>");
+			out.println("<p><b>FirstBid</b>: " + request.getAttribute("First_Bid") + "</p>");
+			out.println("<p><b>Categories</b>: " + request.getAttribute("Categories") + "</p>");
+			out.println("<p><b>Location</b>: " + request.getAttribute("Location") + "</p>");
+			out.println("<p><b>Country</b>: " + request.getAttribute("Country") + "</p>");
+	
+
+		}
+	%>
+	
+<!--
 	<p><b>Name</b>: <%= request.getAttribute("name")%></p>
 	<p><b>Description</b>: <%= request.getAttribute("Description")%></p>
 	<p><b>Seller</b>: <%= request.getAttribute("SellerID")%></p>
@@ -25,6 +48,7 @@
 	<p><b>Categories</b>: <%= request.getAttribute("Categories")%></p>
 	<p><b>Location</b>: <%= request.getAttribute("Location")%></p>
 	<p><b>Country</b>: <%= request.getAttribute("Country")%></p>
+	-->
 
 </body>
 </html>
