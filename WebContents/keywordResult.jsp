@@ -15,7 +15,7 @@
           xmlHttp.onreadystatechange = showSuggestion;
 
           // send the request to the server
-          xmlHttp.open("GET", "/suggest?q="+input);
+          xmlHttp.open("GET", "./suggest");
           xmlHttp.send(null);
         }
 
@@ -23,9 +23,13 @@
         {
           if (xmlHttp.readyState == 4) {
             response = xmlHttp.responseText;
-            response = response.replace(/</g, "&lt;");
-            response = response.replace(/>/g, "&gt;");
-            document.getElementById("suggestion").innerHTML = response;
+            // response = response.replace(/</g, "&lt;");
+            // response = response.replace(/>/g, "&gt;");
+            var para=document.createElement("p");
+            var node=document.createTextNode(response);
+            para.appendChild(node);
+
+            document.getElementById("suggestion").appendChild(para);
           }
         }
 
@@ -39,7 +43,7 @@
 	    String q = request.getParameter("q");
 		out.println("Search: <input onKeyUp='sendAjaxRequest(this.value);' type=\"text\" name=\"q\" value=\"" + q +"\">");
 	%>
-    <b>Suggestion</b>: <pre id="suggestion"></pre>
+    <b>Suggestion</b>: <p id="suggestion"></p>
 
 	<input type="hidden" name="numResultsToSkip" value="0">
 	<input type="hidden" name="numResultsToReturn" value="10">
