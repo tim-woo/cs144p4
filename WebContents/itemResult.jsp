@@ -102,5 +102,6 @@
 	<p><b>Country</b>: <%= request.getAttribute("Country")%></p>
 	-->
 
+	<p><a href="/eBay/search">Go to Search</a></p>
 </body>
 </html>
