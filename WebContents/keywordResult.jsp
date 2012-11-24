@@ -26,6 +26,10 @@
             response = xmlHttp.responseText;
             // response = response.replace(/</g, "&lt;");
             // response = response.replace(/>/g, "&gt;");
+
+            /*
+                This just outputs the text in a paragraph so i can see the response -- not permanent
+            */
             var para=document.createElement("p");
             var node=document.createTextNode(response);
             para.appendChild(node);

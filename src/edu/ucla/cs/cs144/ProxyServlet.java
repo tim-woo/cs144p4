@@ -22,39 +22,22 @@ public class ProxyServlet extends HttpServlet implements Servlet {
     {
         // your codes here
 
-	// response.setContentType("text/xml");
-    PrintWriter out = response.getWriter();
-	try
-    {
-	  String query = request.getParameter("q");
-      query = URLEncoder.encode(query, "UTF-8");
-      String myUrl = "http://google.com/complete/search?output=toolbar&q=";
-      myUrl += query;
-      out.println(myUrl);
+		response.setContentType("text/xml");
+		PrintWriter out = response.getWriter();
+		try
+		{
+			String query = request.getParameter("q");
+			query = URLEncoder.encode(query, "UTF-8");
+			String myUrl = "http://google.com/complete/search?output=toolbar&q=";
+			myUrl += query;
+			out.println(myUrl);
 
-      String results = doHttpUrlConnectionAction(myUrl);
-      out.println(results);
-    }
-    catch (Exception e)
-    {
-      // deal with the exception in your "controller"
-    }
-    // out.println("<html>");
-    // out.println("<head>");
-    // out.println("<title>Hola</title>");
-    // out.println("</head>");
-    // out.println("<body bgcolor=\"white\">");
-    // out.println("</body>");
-    // out.println("</html>");
-
-  //       String query = request.getQueryString();
-  // 		if (query != null) 
-  // 		{
-  // 			String search = request.getParameter("q");
-
-  // 		}
-
-  		// response = "helloworld";
+			String results = doHttpUrlConnectionAction(myUrl);
+			out.println(results);
+		}
+		catch (Exception e)
+		{
+		}
     }
 
     private String doHttpUrlConnectionAction(String desiredUrl)
