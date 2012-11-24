@@ -43,12 +43,13 @@
 	    String q = request.getParameter("q");
 		out.println("Search: <input onKeyUp='sendAjaxRequest(this.value);' type=\"text\" name=\"q\" value=\"" + q +"\">");
 	%>
-    <b>Suggestion</b>: <p id="suggestion"></p>
 
 	<input type="hidden" name="numResultsToSkip" value="0">
 	<input type="hidden" name="numResultsToReturn" value="10">
 
-	<input type="submit" value="Submit"><br>
+	<input type="submit" value="Submit"></form><br>
+
+    <b>Suggestion</b>: <p id="suggestion"></p>
 
     <h5>Showing <%= request.getAttribute("total") %> results.</h5>
 
