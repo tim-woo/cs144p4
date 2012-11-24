@@ -15,7 +15,8 @@
           xmlHttp.onreadystatechange = showSuggestion;
 
           // send the request to the server
-          xmlHttp.open("GET", "./suggest");
+          var url = "./suggest?q=" + input;
+          xmlHttp.open("GET", url);
           xmlHttp.send(null);
         }
 
@@ -30,6 +31,8 @@
             para.appendChild(node);
 
             document.getElementById("suggestion").appendChild(para);
+
+            // document.getElementById("suggestion").innerHTML = response;
           }
         }
 

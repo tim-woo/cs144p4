@@ -10,43 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SearchServlet extends HttpServlet implements Servlet {
        
     public SearchServlet() {}
-/*
-    String[] parseParams(String query, int numParams) {
-    	// eg. q=timothy&numResultsToSkip=0&numResultsToReturn=30 
-    	String[] params = new String[numParams];
-    	int j=0;
-    	int k=0;
 
-    	int i=0;
-    	for (i=0; i<numParams-1;i++) {
-    		while (j<query.length()) {
-    			if (query.charAt(j) == '=') {
-    				break;
-    			}
-    			j++;
-    		}
-    		k=j;
-    		while (k<query.length()) {
-    			if (query.charAt(k) == '&') {
-    				break;
-    			}
-    			k++;
-    		}
-    		params[i] = query.substring(j+1,k);
-    		j=k;
-    	}
-    	// find last param
-    	while (j<query.length()) {
-			if (query.charAt(j) == '=') {
-				break;
-			}
-			j++;
-    	}
-    	params[i] = query.substring(j+1,query.length());
-
-    	return params;
-    }
-*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
     	String query = request.getQueryString();
