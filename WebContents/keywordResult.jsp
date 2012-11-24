@@ -8,7 +8,6 @@
 
         function sendAjaxRequest(input)
         {
-            // document.body.innerHTML = "hello friend";
           xmlHttp = new XMLHttpRequest(); // works only for Firefox, Safari, ...
 
           // set the server response handler
@@ -23,18 +22,20 @@
         function showSuggestion() 
         {
           if (xmlHttp.readyState == 4) {
-            response = xmlHttp.responseText;
-            // response = response.replace(/</g, "&lt;");
-            // response = response.replace(/>/g, "&gt;");
-
-            /*
-                This just outputs the text in a paragraph so i can see the response -- not permanent
-            */
+            // 1. get the text response just so i can output it and see it -- delete later
+            textResponse = xmlHttp.responseText;
             var para=document.createElement("p");
-            var node=document.createTextNode(response);
+            var node=document.createTextNode(textResponse);
             para.appendChild(node);
 
             document.getElementById("suggestion").appendChild(para);
+
+            // 2. get the response back as XML like i'm suppose to -- trying to figure out how to get elements!
+            xmlDoc = xmlHttp.responseXML;
+            x=xmlDoc.documentElement.childNodes[0].childNodes[0].nodeName;
+
+            // x = doc.getElementsByTagName("CompleteSuggestion")[0];
+            // y = x.childNodes[0];
 
             // document.getElementById("suggestion").innerHTML = response;
           }
