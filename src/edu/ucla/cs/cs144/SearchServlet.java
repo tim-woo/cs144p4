@@ -34,27 +34,33 @@ public class SearchServlet extends HttpServlet implements Servlet {
 	        else
                 params[2] = request.getParameter("numResultsToReturn");
 
-	    	request.setAttribute("search", params[0]);
-	    	request.setAttribute("skip", params[1]);
-	    	request.setAttribute("show", params[2]);
-
-	    	int numberShow = Integer.parseInt(params[2]);
-		    AuctionSearchClient sc = new AuctionSearchClient();
-		    SearchResult[] results = sc.basicSearch(params[0], Integer.parseInt(params[1]), numberShow);
 		    String result = "";
 
-	    	request.setAttribute("total", results.length);
-
-		    int length = (results.length<numberShow ? results.length : numberShow);
-		    int num = Integer.parseInt(params[1]);
-		    for (int i=0; i<length;i++) {
-		    	num++;
-		    	result += num + ". " + "<a href=\"/eBay/item?itemID=" + results[i].getItemId() + "\">" + results[i].getName() + "</a><br>";
+		    if (params[0].equals("")){
+		    	request.setAttribute("total", 0);
+		    	request.setAttribute("result", "");
 		    }
-	    	request.setAttribute("result", result);
+		    else 
+		    {
+		    	request.setAttribute("search", params[0]);
+		    	request.setAttribute("skip", params[1]);
+		    	request.setAttribute("show", params[2]);
+
+		    	int numberShow = Integer.parseInt(params[2]);
+			    AuctionSearchClient sc = new AuctionSearchClient();
+			    SearchResult[] results = sc.basicSearch(params[0], Integer.parseInt(params[1]), numberShow);
+
+		    	request.setAttribute("total", results.length);
+		    	int length = (results.length<numberShow ? results.length : numberShow);
+			    int num = Integer.parseInt(params[1]);
+			    for (int i=0; i<length;i++) {
+			    	num++;
+			    	result += num + ". " + "<a href=\"/eBay/item?itemID=" + results[i].getItemId() + "\">" + results[i].getName() + "</a><br>";
+			    }
+		    	request.setAttribute("result", result);
+		    }
 
 		    request.getRequestDispatcher("/keywordResult.jsp").forward(request, response);
-
     	}
     	else {
 		    request.getRequestDispatcher("/keywordSearch.html").forward(request, response);
