@@ -1,67 +1,21 @@
 <html>
+
 <head>
-    <title><%= request.getAttribute("title") %></title>
-
     <script type="text/javascript">
-
         var xmlHttp;
-
-        function sendAjaxRequest(input)
-        {
-          xmlHttp = new XMLHttpRequest(); // works only for Firefox, Safari, ...
-
-          // set the server response handler
-          xmlHttp.onreadystatechange = showSuggestion;
-
-          // send the request to the server
-          var url = "./suggest?q=" + input;
-          xmlHttp.open("GET", url);
-          xmlHttp.send(null);
-        }
-
-        function showSuggestion() 
-        {
-
-          if (xmlHttp.readyState == 4) {
-            // reset suggestions
-            document.getElementById("suggestion").innerHTML = '';
-           // 1. get the text response just so i can output it and see it -- delete later
-            
-            textResponse = xmlHttp.responseText;
-            var para=document.createElement("p");
-            var node=document.createTextNode(textResponse);
-            para.appendChild(node);
-
-            //document.getElementById("suggestion").appendChild(para);
-
-            // 2. get the response back as XML like i'm suppose to -- trying to figure out how to get elements!
-            var xmlDoc = xmlHttp.responseXML;
-
-            var suggestions = xmlDoc.getElementsByTagName("suggestion");
-            var numSuggestions = suggestions.length;
-
-            for (var i=0; i<numSuggestions; i++)
-            {
-                var data = suggestions[i].getAttribute("data");
-
-                var para2= document.createElement("p");
-                var node2= document.createTextNode(data);
-                para2.appendChild(node2);
-
-                document.getElementById("suggestion").appendChild(para2);
-            }
-          } 
-        }
-
     </script>
-
+    <script type="text/javascript" src="./autosuggest.js"></script>
+    <script type="text/javascript" src="./suggestions.js"></script>    
+    <title>
+        <%= request.getAttribute("title") %>
+    </title>
 
 </head>
 <body>
 	<form name="input" action="search" method="get">
 	<%
 	    String q = request.getParameter("q");
-		out.println("Search: <input onKeyUp='sendAjaxRequest(this.value);' type=\"text\" name=\"q\" value=\"" + q +"\">");
+		out.println("Search: <input type=\"text\" id=\"queryTextBox\" name=\"q\" value=\"" + q +"\">");
 	%>
 
 	<input type="hidden" name="numResultsToSkip" value="0">
@@ -69,7 +23,8 @@
 
 	<input type="submit" value="Submit"></form><br>
 
-    <b>Suggestion</b>: <div id="suggestion"></div>
+    <b>Suggestion</b>: 
+    <div id="suggestion" class="suggestions"></div>
 
     <h5>Showing <%= request.getAttribute("total") %> results.</h5>
 
@@ -93,6 +48,12 @@
         out.println("<a href=\"/eBay/search?q=" + q + "&numResultsToSkip=" + nextNum + "&numResultsToReturn=" + showNum + "\">Next</a>");
    	}
     %>
+
+    <script type="text/javascript">
+            window.onload = function () {
+                var oTextbox = new AutoSuggestControl(document.getElementById("queryTextBox"), new StateSuggestions());
+            }
+    </script>
    
 </body>
 </html>

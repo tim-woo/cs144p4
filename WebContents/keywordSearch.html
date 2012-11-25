@@ -1,11 +1,28 @@
 <html>
+<head>
+	<script type="text/javascript">
+        var xmlHttp;
+    </script>
+    <script type="text/javascript" src="./autosuggest.js"></script>
+    <script type="text/javascript" src="./suggestions.js"></script>
+</head>
+
 <body>
-<form name="input" action="search" method="get">
-Search: <input type="text" name="q">
 
-<input type="hidden" name="numResultsToSkip" value="0">
-<input type="hidden" name="numResultsToReturn" value="10">
+	<form name="input" action="search" method="get">
+	Search: <input type="text" id="queryTextBox" name="q">
 
-<input type="submit" value="Submit">
-</form></body>
+	<input type="hidden" name="numResultsToSkip" value="0">
+	<input type="hidden" name="numResultsToReturn" value="10">
+
+	<input type="submit" value="Submit">
+	</form>
+
+    <script type="text/javascript">
+            window.onload = function () {
+                var oTextbox = new AutoSuggestControl(document.getElementById("queryTextBox"), new StateSuggestions());
+            }
+    </script>
+
+</body>
 </html>
