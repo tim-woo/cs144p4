@@ -1,17 +1,10 @@
 
-/**
- * Provides suggestions for state names (USA).
- * @class
- * @scope public
- */
 function StateSuggestions() {
 
 }
 
 /**
  * Request suggestions for the given autosuggest control. 
- * @scope protected
- * @param oAutoSuggestControl The autosuggest control to provide suggestions for.
  */
 StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*:AutoSuggestControl*/, bTypeAhead /*:boolean*/) {
 
