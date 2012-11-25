@@ -21,24 +21,36 @@
 
         function showSuggestion() 
         {
+
           if (xmlHttp.readyState == 4) {
-            // 1. get the text response just so i can output it and see it -- delete later
+            // reset suggestions
+            document.getElementById("suggestion").innerHTML = '';
+           // 1. get the text response just so i can output it and see it -- delete later
+            
             textResponse = xmlHttp.responseText;
             var para=document.createElement("p");
             var node=document.createTextNode(textResponse);
             para.appendChild(node);
 
-            document.getElementById("suggestion").appendChild(para);
+            //document.getElementById("suggestion").appendChild(para);
 
             // 2. get the response back as XML like i'm suppose to -- trying to figure out how to get elements!
-            xmlDoc = xmlHttp.responseXML;
-            x=xmlDoc.documentElement.childNodes[0].childNodes[0].nodeName;
+            var xmlDoc = xmlHttp.responseXML;
 
-            // x = doc.getElementsByTagName("CompleteSuggestion")[0];
-            // y = x.childNodes[0];
+            var suggestions = xmlDoc.getElementsByTagName("suggestion");
+            var numSuggestions = suggestions.length;
 
-            // document.getElementById("suggestion").innerHTML = response;
-          }
+            for (var i=0; i<numSuggestions; i++)
+            {
+                var data = suggestions[i].getAttribute("data");
+
+                var para2= document.createElement("p");
+                var node2= document.createTextNode(data);
+                para2.appendChild(node2);
+
+                document.getElementById("suggestion").appendChild(para2);
+            }
+          } 
         }
 
     </script>
@@ -57,7 +69,7 @@
 
 	<input type="submit" value="Submit"></form><br>
 
-    <b>Suggestion</b>: <p id="suggestion"></p>
+    <b>Suggestion</b>: <div id="suggestion"></div>
 
     <h5>Showing <%= request.getAttribute("total") %> results.</h5>
 

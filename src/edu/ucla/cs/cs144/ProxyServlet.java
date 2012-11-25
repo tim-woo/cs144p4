@@ -30,7 +30,7 @@ public class ProxyServlet extends HttpServlet implements Servlet {
 			query = URLEncoder.encode(query, "UTF-8");
 			String myUrl = "http://google.com/complete/search?output=toolbar&q=";
 			myUrl += query;
-			out.println(myUrl);
+			//out.println(myUrl);
 
 			String results = doHttpUrlConnectionAction(myUrl);
 			out.println(results);
