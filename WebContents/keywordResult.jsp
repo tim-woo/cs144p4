@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<form name="input" action="search" method="get">
+	<form name="input" action="search" method="get" autocomplete="off">
 	<%
 	    String q = request.getParameter("q");
 		out.println("Search: <input type=\"text\" id=\"queryTextBox\" name=\"q\" value=\"" + q +"\">");

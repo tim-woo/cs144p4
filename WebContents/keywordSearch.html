@@ -9,7 +9,7 @@
 
 <body>
 
-	<form name="input" action="search" method="get">
+	<form name="input" action="search" method="get" autocomplete="off">
 	Search: <input type="text" id="queryTextBox" name="q">
 
 	<input type="hidden" name="numResultsToSkip" value="0">
@@ -17,6 +17,8 @@
 
 	<input type="submit" value="Submit">
 	</form>
+
+    <div id="suggestion" class="suggestions"></div>
 
     <script type="text/javascript">
             window.onload = function () {
