@@ -1,52 +1,19 @@
 
 /**
  * An autosuggest textbox control.
- * @class
- * @scope public
  */
-function AutoSuggestControl(oTextbox /*:HTMLInputElement*/, 
-                            oProvider /*:SuggestionProvider*/) {
-    
-    /**
-     * The currently selected suggestions.
-     * @scope private
-     */   
-    this.cur /*:int*/ = -1;
-
-    /**
-     * The dropdown list layer.
-     * @scope private
-     */
+function AutoSuggestControl(oTextbox /*:HTMLInputElement*/, oProvider /*:SuggestionProvider*/) {
+      
+    this.cur = -1;
     this.layer = null;
+    this.provider = oProvider;
+    this.textbox = oTextbox;
     
-    /**
-     * Suggestion provider for the autosuggest feature.
-     * @scope private.
-     */
-    this.provider /*:SuggestionProvider*/ = oProvider;
-    
-    /**
-     * The textbox to capture.
-     * @scope private
-     */
-    this.textbox /*:HTMLInputElement*/ = oTextbox;
-    
-    //initialize the control
     this.init();
-    
 }
 
-/**
- * Autosuggests one or more suggestions for what the user has typed.
- * If no suggestions are passed in, then no autosuggest occurs.
- * @scope private
- * @param aSuggestions An array of suggestion strings.
- * @param bTypeAhead If the control should provide a type ahead suggestion.
- */
-AutoSuggestControl.prototype.autosuggest = function (aSuggestions /*:Array*/,
-                                                     bTypeAhead /*:boolean*/) {
+AutoSuggestControl.prototype.autosuggest = function (aSuggestions /*:Array*/, bTypeAhead /*:boolean*/) {
     
-    //make sure there's at least one suggestion
     if (aSuggestions.length > 0) {
         if (bTypeAhead) {
            this.typeAhead(aSuggestions[0]);
@@ -58,10 +25,6 @@ AutoSuggestControl.prototype.autosuggest = function (aSuggestions /*:Array*/,
     }
 };
 
-/**
- * Creates the dropdown layer to display multiple suggestions.
- * @scope private
- */
 AutoSuggestControl.prototype.createDropDown = function () {
 
     var oThis = this;
@@ -89,16 +52,10 @@ AutoSuggestControl.prototype.createDropDown = function () {
             oThis.textbox.focus();
         }
     };
-    
-    
     document.body.appendChild(this.layer);
 };
 
-/**
- * Gets the left coordinate of the textbox.
- * @scope private
- * @return The left coordinate of the textbox in pixels.
- */
+// functions for getting position of the dropdown box
 AutoSuggestControl.prototype.getLeft = function () /*:int*/ {
 
     var oNode = this.textbox;
@@ -112,11 +69,6 @@ AutoSuggestControl.prototype.getLeft = function () /*:int*/ {
     return iLeft;
 };
 
-/**
- * Gets the top coordinate of the textbox.
- * @scope private
- * @return The top coordinate of the textbox in pixels.
- */
 AutoSuggestControl.prototype.getTop = function () /*:int*/ {
 
     var oNode = this.textbox;
@@ -130,11 +82,7 @@ AutoSuggestControl.prototype.getTop = function () /*:int*/ {
     return iTop;
 };
 
-/**
- * Handles three keydown events.
- * @scope private
- * @param oEvent The event object for the keydown event.
- */
+// functions for handling key events
 AutoSuggestControl.prototype.handleKeyDown = function (oEvent /*:Event*/) {
 
     switch(oEvent.keyCode) {
@@ -151,11 +99,6 @@ AutoSuggestControl.prototype.handleKeyDown = function (oEvent /*:Event*/) {
 
 };
 
-/**
- * Handles keyup events.
- * @scope private
- * @param oEvent The event object for the keyup event.
- */
 AutoSuggestControl.prototype.handleKeyUp = function (oEvent /*:Event*/) {
 
     var iKeyCode = oEvent.keyCode;
@@ -173,19 +116,11 @@ AutoSuggestControl.prototype.handleKeyUp = function (oEvent /*:Event*/) {
     }
 };
 
-/**
- * Hides the suggestion dropdown.
- * @scope private
- */
+// hides the dropdown if not supposed to show
 AutoSuggestControl.prototype.hideSuggestions = function () {
     this.layer.style.visibility = "hidden";
 };
 
-/**
- * Highlights the given node in the suggestions dropdown.
- * @scope private
- * @param oSuggestionNode The node representing a suggestion in the dropdown.
- */
 AutoSuggestControl.prototype.highlightSuggestion = function (oSuggestionNode) {
     
     for (var i=0; i < this.layer.childNodes.length; i++) {
@@ -198,11 +133,6 @@ AutoSuggestControl.prototype.highlightSuggestion = function (oSuggestionNode) {
     }
 };
 
-/**
- * Initializes the textbox with event handlers for
- * auto suggest functionality.
- * @scope private
- */
 AutoSuggestControl.prototype.init = function () {
 
     //save a reference to this object
@@ -241,11 +171,7 @@ AutoSuggestControl.prototype.init = function () {
     this.createDropDown();
 };
 
-/**
- * Highlights the next suggestion in the dropdown and
- * places the suggestion into the textbox.
- * @scope private
- */
+// highlights next suggestion and places the current suggestion in textbox
 AutoSuggestControl.prototype.nextSuggestion = function () {
     var cSuggestionNodes = this.layer.childNodes;
 
@@ -256,11 +182,7 @@ AutoSuggestControl.prototype.nextSuggestion = function () {
     }
 };
 
-/**
- * Highlights the previous suggestion in the dropdown and
- * places the suggestion into the textbox.
- * @scope private
- */
+// highlights previous suggestion and places suggestion in textbox
 AutoSuggestControl.prototype.previousSuggestion = function () {
     var cSuggestionNodes = this.layer.childNodes;
 
@@ -271,12 +193,7 @@ AutoSuggestControl.prototype.previousSuggestion = function () {
     }
 };
 
-/**
- * Selects a range of text in the textbox.
- * @scope public
- * @param iStart The start index (base 0) of the selection.
- * @param iLength The number of characters to select.
- */
+// gets range of the textbox
 AutoSuggestControl.prototype.selectRange = function (iStart /*:int*/, iLength /*:int*/) {
 
     //use text ranges for Internet Explorer
@@ -295,12 +212,7 @@ AutoSuggestControl.prototype.selectRange = function (iStart /*:int*/, iLength /*
     this.textbox.focus();      
 }; 
 
-/**
- * Builds the suggestion layer contents, moves it into position,
- * and displays the layer.
- * @scope private
- * @param aSuggestions An array of suggestions for the control.
- */
+// initializes the suggestions dropdown
 AutoSuggestControl.prototype.showSuggestions = function (aSuggestions /*:Array*/) {
     
     var oDiv = null;
@@ -318,12 +230,7 @@ AutoSuggestControl.prototype.showSuggestions = function (aSuggestions /*:Array*/
 
 };
 
-/**
- * Inserts a suggestion into the textbox, highlighting the 
- * suggested part of the text.
- * @scope private
- * @param sSuggestion The suggestion for the textbox.
- */
+// type ahead functinality
 AutoSuggestControl.prototype.typeAhead = function (sSuggestion /*:String*/) {
 
     //check for support of typeahead functionality
