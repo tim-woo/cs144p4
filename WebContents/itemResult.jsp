@@ -1,30 +1,8 @@
 <html>
 <head>
     <title><%= request.getAttribute("title") %></title>
-</head>
-<body onload="myGeocodeFirst()">
-	<form name="input" action="item" method="get">
-	<%
-	    String q = request.getParameter("itemID");
-		out.println("Looked up Item ID: <input type=\"text\" name=\"itemID\" value=\"" + q +"\">");
-	%>
-	<input type="submit" value="Submit"><br>
-	</form>
 
-	<style type="text/css"> 
-		html { height: 100% } 
-		body { height: 100%; margin: 0px; padding: 0px } 
-		#map_canvas { height: 100% } 
-	</style> 
-	
-	<%
-		String addr = request.getAttribute("Location").toString() + ", " + request.getAttribute("Country").toString();
-		out.println("<input id=\"text_address\" type=\"hidden\" value=\"" + addr + "\">");
-	%>
-
-	<script type="text/javascript" 
-    src="http://maps.google.com/maps/api/js?sensor=false">
-    </script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 	<script type="text/javascript">
 		function initialize() {
@@ -54,14 +32,33 @@
 						center: firstLoc, 
 						mapTypeId: google.maps.MapTypeId.ROADMAP 
 					}; 
-					var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);              
+					var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);    
 	            } 
 	            else {
-	              document.getElementById("text_status").value = status;
+		            document.getElementById("map_canvas").style.display = "none"; 	            		
 	            }
           	}
         ); }
 	</script> 
+
+</head>
+
+<body onload="myGeocodeFirst()">
+	<form name="input" action="item" method="get">
+	<%
+	    String q = request.getParameter("itemID");
+		out.println("Looked up Item ID: <input type=\"text\" name=\"itemID\" value=\"" + q +"\">");
+		out.println("<input type=\"hidden\" id=\"text_address\" value=\"\">");
+
+	%>
+	<input type="submit" value="Submit"><br>
+	</form>
+
+	<style type="text/css"> 
+		html { height: 100% } 
+		body { height: 100%; margin: 0px; padding: 0px } 
+		#map_canvas { height: 100% } 
+	</style> 
 
 	<%
 		String result = request.getAttribute("total").toString();
@@ -80,6 +77,9 @@
 			out.println("<p><b>Categories</b>: " + request.getAttribute("Categories") + "</p>");
 			out.println("<p><b>Location</b>: " + request.getAttribute("Location") + "</p>");
 			out.println("<p><b>Country</b>: " + request.getAttribute("Country") + "</p>");
+
+			String addr = request.getAttribute("Location").toString() + ", " + request.getAttribute("Country").toString();
+			out.println("<script> document.getElementById(\"text_address\").value=\"" + addr + "\"; </script>");
 		}
 	%>
 
