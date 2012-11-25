@@ -29,11 +29,17 @@ function AutoSuggestControl(oTextbox /*:HTMLInputElement*/,
  * @scope private
  * @param aSuggestions An array of suggestion strings.
  */
-AutoSuggestControl.prototype.autosuggest = function (aSuggestions /*:Array*/) {
+AutoSuggestControl.prototype.autosuggest = function (aSuggestions /*:Array*/, bTypeAhead /*:boolean*/) {
     
     //make sure there's at least one suggestion
     if (aSuggestions.length > 0) {
-        this.typeAhead(aSuggestions[0]);
+        if (bTypeAhead) {
+           this.typeAhead(aSuggestions[0]);
+        }
+        
+        this.showSuggestions(aSuggestions);
+    } else {
+        this.hideSuggestions();
     }
 };
 

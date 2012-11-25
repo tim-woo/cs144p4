@@ -4,8 +4,9 @@
     <script type="text/javascript">
         var xmlHttp;
     </script>
-    <script type="text/javascript" src="./autosuggest.js"></script>
-    <script type="text/javascript" src="./suggestions.js"></script>    
+    <script type="text/javascript" src="./dropdown.js"></script>
+    <script type="text/javascript" src="./suggestions.js"></script> 
+    <link rel="stylesheet" type="text/css" href="./autosuggest.css" />       
     <title>
         <%= request.getAttribute("title") %>
     </title>

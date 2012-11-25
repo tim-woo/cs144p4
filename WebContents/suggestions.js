@@ -13,7 +13,7 @@ function StateSuggestions() {
  * @scope protected
  * @param oAutoSuggestControl The autosuggest control to provide suggestions for.
  */
-StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*:AutoSuggestControl*/) {
+StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*:AutoSuggestControl*/, bTypeAhead /*:boolean*/) {
 
     var aSuggestions = [];
     var sTextboxValue = oAutoSuggestControl.textbox.value;
@@ -30,7 +30,7 @@ StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*
     //document.getElementById("suggestion").appendChild(para);
 */
     // 2. get the response back as XML like i'm suppose to -- trying to figure out how to get elements!
-    var xmlDoc = xmlHttp.responseXML;
+    xmlDoc = xmlHttp.responseXML;
     var suggestions = xmlDoc.getElementsByTagName("suggestion");
     var numSuggestions = suggestions.length;
 
@@ -46,10 +46,10 @@ StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl /*
         aSuggestions.push(data);
     }
 
-    oAutoSuggestControl.autosuggest(aSuggestions);
+    oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);
 };
 
-StateSuggestions.prototype.sendAjaxRequest = function (oAutoSuggestControl /*:AutoSuggestControl*/) {
+StateSuggestions.prototype.sendAjaxRequest = function (oAutoSuggestControl /*:AutoSuggestControl*/, bTypeAhead /*:boolean*/) {
 
     var oThis = this;
     xmlHttp = new XMLHttpRequest(); 
@@ -57,7 +57,7 @@ StateSuggestions.prototype.sendAjaxRequest = function (oAutoSuggestControl /*:Au
     var url = "./suggest?q=" + sTextboxValue;
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4) {
-            oThis.requestSuggestions(oAutoSuggestControl);
+            oThis.requestSuggestions(oAutoSuggestControl, bTypeAhead);
         }
     };
     xmlHttp.open("GET", url);
