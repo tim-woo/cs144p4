@@ -44,7 +44,7 @@
 </head>
 
 <body onload="myGeocodeFirst()">
-	<form name="input" action="item" method="get">
+	<form name="input" action="item" method="get" autocomplete="off">
 	<%
 	    String q = request.getParameter("itemID");
 		out.println("Looked up Item ID: <input type=\"text\" name=\"itemID\" value=\"" + q +"\">");
