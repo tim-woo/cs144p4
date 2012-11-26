@@ -16,7 +16,7 @@ AutoSuggestControl.prototype.autosuggest = function (aSuggestions /*:Array*/, bT
     
     if (aSuggestions.length > 0) {
         if (bTypeAhead) {
-           this.typeAhead(aSuggestions[0]);
+           //this.typeAhead(aSuggestions[0]);
         }
         
         this.showSuggestions(aSuggestions);
