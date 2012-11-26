@@ -105,7 +105,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-    	String pageTitle = "My Item Servlet";
+    	String pageTitle = "Item Search";
 	    request.setAttribute("title", pageTitle);
 
     	String query = request.getQueryString();

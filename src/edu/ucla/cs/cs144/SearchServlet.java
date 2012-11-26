@@ -16,7 +16,7 @@ public class SearchServlet extends HttpServlet implements Servlet {
     	String query = request.getQueryString();
 
         // your codes here
-        String pageTitle = "My Search Servlet";
+        String pageTitle = "Search";
 	    request.setAttribute("title", pageTitle);
 
 		if (query != null) {
@@ -54,6 +54,9 @@ public class SearchServlet extends HttpServlet implements Servlet {
 		    	int length = (results.length<numberShow ? results.length : numberShow);
 			    int num = Integer.parseInt(params[1]);
 			    for (int i=0; i<length;i++) {
+			    	if (i==0 && results[i].getItemId().equals("-1")) {	// special case check for invalid queries
+				    	request.setAttribute("total", "0");
+			    	}
 			    	num++;
 			    	result += num + ". " + "<a href=\"/eBay/item?itemID=" + results[i].getItemId() + "\">" + results[i].getName() + "</a><br>";
 			    }
