@@ -81,6 +81,9 @@
 			String addr = request.getAttribute("Location").toString() + ", " + request.getAttribute("Country").toString();
 			out.println("<script> document.getElementById(\"text_address\").value=\"" + addr + "\"; </script>");
 		}
+		else {
+			out.println("<p>Sorry, no item was found with that ID</p>");
+	}
 	%>
 
 	<div id="map_canvas" style="width:500px; height:500px;"></div> 

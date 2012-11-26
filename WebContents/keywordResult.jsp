@@ -56,6 +56,8 @@
    	}
     %>
 
+    <p><a href="/eBay/item">Go to ItemID Search</a></p>
+
     <script type="text/javascript">
             window.onload = function () {
                 var oTextbox = new AutoSuggestControl(document.getElementById("queryTextBox"), new StateSuggestions());
