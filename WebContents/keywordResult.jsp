@@ -21,10 +21,8 @@
 
 	<input type="hidden" name="numResultsToSkip" value="0">
 	<input type="hidden" name="numResultsToReturn" value="10">
+	<input type="submit" value="Submit"></form>
 
-	<input type="submit" value="Submit"></form><br>
-
-    <b>Suggestion</b>: 
     <div id="suggestion" class="suggestions"></div>
 
     <h5>Showing <%= request.getAttribute("total") %> results.</h5>

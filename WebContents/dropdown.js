@@ -106,7 +106,7 @@ AutoSuggestControl.prototype.handleKeyUp = function (oEvent /*:Event*/) {
     //for backspace (8) and delete (46), shows suggestions without typeahead
     if (iKeyCode == 8 || iKeyCode == 46) {
         this.provider.requestSuggestions(this, false);
-        
+        this.provider.sendAjaxRequest(this, false);
     //make sure not to interfere with non-character keys
     } else if (iKeyCode < 32 || (iKeyCode >= 33 && iKeyCode < 46) || (iKeyCode >= 112 && iKeyCode <= 123)) {
         //ignore
