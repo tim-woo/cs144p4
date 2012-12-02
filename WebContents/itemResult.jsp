@@ -68,6 +68,10 @@
 			out.println("<p><b>Description</b>: " + request.getAttribute("Description") + "</p>");
 			out.println("<p><b>Seller</b>: " + request.getAttribute("SellerID") + "</p>");
 			out.println("<p><b>Seller Rating</b>: " + request.getAttribute("SellerRating") + "</p>");
+			if (request.getAttribute("Buy_Now_Option").equals("TRUE"))
+			{
+				out.println("<p><b>Buy It Now Price</b>: " + request.getAttribute("Buy_Price") + "</p>");
+			}
 			out.println("<p><b>Started</b>: " + request.getAttribute("Started") + "</p>");
 			out.println("<p><b>Ends</b>: " + request.getAttribute("Ends") + "</p>");
 			out.println("<p><b>Currently</b>: " + request.getAttribute("Currently") + "</p>");

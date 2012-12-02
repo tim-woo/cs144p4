@@ -186,6 +186,17 @@ public class ItemServlet extends HttpServlet implements Servlet {
           }
           request.setAttribute("Bids", bids);
 
+          Element[] buyNow = getElementsByTagNameNR(root, "Buy_Price");
+          if (buyNow.length == 0)
+          {
+            request.setAttribute("Buy_Now_Option", "FALSE");
+          }
+          else
+          {
+            request.setAttribute("Buy_Now_Option", "TRUE");
+            request.setAttribute("Buy_Price", getElementTextByTagNameNR(root, "Buy_Price"));
+          }
+
           Element[] catArr = getElementsByTagNameNR(root, "Category");
           String categories = "";
           for (int i=0;i<catArr.length;i++) {
