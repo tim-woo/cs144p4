@@ -16,6 +16,14 @@
         <url-pattern>/item</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>CreditServlet</servlet-name>
+        <servlet-class>edu.ucla.cs.cs144.CreditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreditServlet</servlet-name>
+        <url-pattern>/credit-card-input</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ProxyServlet</servlet-name>
         <servlet-class>edu.ucla.cs.cs144.ProxyServlet</servlet-class>
     </servlet>
@@ -27,3 +35,4 @@
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 </web-app>
+

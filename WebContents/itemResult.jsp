@@ -62,6 +62,8 @@
 
 	<%
 		String result = request.getAttribute("total").toString();
+		String id = request.getParameter("itemID").toString();
+
 		if (result.equals("1"))
 		{
 			out.println("<p><b>Name</b>: " + request.getAttribute("name") + "</p>");
@@ -70,7 +72,11 @@
 			out.println("<p><b>Seller Rating</b>: " + request.getAttribute("SellerRating") + "</p>");
 			if (request.getAttribute("Buy_Now_Option").equals("TRUE"))
 			{
-				out.println("<p><b>Buy It Now Price</b>: " + request.getAttribute("Buy_Price") + "</p>");
+				out.println("<p><b>Buy It Now Price</b>: " + request.getAttribute("Buy_Price") + "<br>");
+				session.setAttribute("itemID", id);
+				session.setAttribute("Name", request.getAttribute("name"));
+				session.setAttribute("Buy_Price", request.getAttribute("Buy_Price"));
+				out.println("<span>       </span><a href=\"/eBay/credit-card-input\">Pay Now</a></p>");
 			}
 			out.println("<p><b>Started</b>: " + request.getAttribute("Started") + "</p>");
 			out.println("<p><b>Ends</b>: " + request.getAttribute("Ends") + "</p>");
