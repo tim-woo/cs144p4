@@ -1,4 +1,4 @@
-Project 4a
+Project 4a+b
 
 Partner 1: Timothy Woo sid: 903 781 788
 Partner 2: Rachel Baldovino sid: 503 812 659
@@ -17,3 +17,5 @@ the JSP page for display. The itemID search page is done similarly. The
 difference is that itemID search fetches XML data from the web service which
 then needs to get parsed and displayed. We parsed the XML inside of the servlet
 and then passed this information over to the JSP page to display it.
+
+In part 4b we added Google Maps and a suggestion query box.
