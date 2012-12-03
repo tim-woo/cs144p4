@@ -76,7 +76,7 @@
 				session.setAttribute("itemID", id);
 				session.setAttribute("Name", request.getAttribute("name"));
 				session.setAttribute("Buy_Price", request.getAttribute("Buy_Price"));
-				out.println("<span>       </span><a href=\"/eBay/credit-card-input\">Pay Now</a></p>");
+				out.println("<a href=\"/eBay/credit-card-input\">Pay Now</a></p>");
 			}
 			out.println("<p><b>Started</b>: " + request.getAttribute("Started") + "</p>");
 			out.println("<p><b>Ends</b>: " + request.getAttribute("Ends") + "</p>");
