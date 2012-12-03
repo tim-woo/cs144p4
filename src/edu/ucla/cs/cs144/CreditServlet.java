@@ -18,12 +18,13 @@ public class CreditServlet extends HttpServlet implements Servlet {
     	HttpSession session = request.getSession(true);
 		String itemID = (String)session.getAttribute("itemID");
 
-		if (session.isNew() || (itemID == null))
+		if ((session.isNew()) || (itemID.equals(null)))
 		{
-			request.setAttribute("itemID", "error");
+			request.setAttribute("status", "1");
 		}
 		else 
 		{
+			request.setAttribute("status", "0");
 			request.setAttribute("itemID", itemID);
 			request.setAttribute("Name", session.getAttribute("Name"));
 			request.setAttribute("Buy_Price", session.getAttribute("Buy_Price"));
