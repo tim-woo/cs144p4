@@ -15,7 +15,7 @@
             out.println("<p>ItemName: " + request.getAttribute("Name").toString() + "</p>");
             out.println("<p>Buy_Price: " + request.getAttribute("Buy_Price").toString() + "</p>");
             out.println("<form name=\"cc\" action=\"https://" + request.getServerName() + ":8443" + request.getContextPath());
-            out.println("/confirmation" + "\" method=\"post\" autocomplete=\"off\">");
+            out.println("/confirmation" + "\" method=\"POST\" autocomplete=\"off\">");
             out.println("Credit Card: <input type=\"text\" name=\"CC\">");
             out.println("<input type=\"submit\" value=\"Submit\"></form>");
         }

@@ -16,6 +16,7 @@
         }
         else
         {
+            out.println("<h1>Confirmation</h1>");
             out.println("<p>Item ID: " + request.getAttribute("itemID").toString() + "</p>");
             out.println("<p>ItemName: " + request.getAttribute("Name").toString() + "</p>");
             out.println("<p>Buy_Price: " + request.getAttribute("Buy_Price").toString() + "</p>");

@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>ConfirmServlet</servlet-name>
-        <servlet-class>edu.ucla.cs.cs144.CreditServlet</servlet-class>
+        <servlet-class>edu.ucla.cs.cs144.ConfirmServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConfirmServlet</servlet-name>
