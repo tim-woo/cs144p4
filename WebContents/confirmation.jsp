@@ -4,7 +4,7 @@
 <body>
 
 <%
-        if (request.getAttribute("status").equals("error"))
+        if (request.getAttribute("status").equals("inactive"))
         {
             out.println("<p>Sorry, but there is no active session open.<p>");
             out.println("<p><a href=\"/eBay\">Go Back to eBay Home Page</a></p>");

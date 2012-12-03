@@ -7,11 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 
 public class ConfirmServlet extends HttpServlet implements Servlet {
        
     public ConfirmServlet() {}
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+      	out.println("Where'd you come from? You've reached a deadend.");
+     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {

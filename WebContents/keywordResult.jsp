@@ -10,7 +10,7 @@
     <title>
         <%= request.getAttribute("title") %>
     </title>
-
+    <meta name="viewport" content="width=400" />
 </head>
 <body>
 	<form name="input" action="search" method="get" autocomplete="off">
@@ -24,7 +24,6 @@
 	<input type="submit" value="Submit"></form>
 
     <div id="suggestion" class="suggestions"></div>
-
 
     <%
     String total = request.getAttribute("total").toString();
