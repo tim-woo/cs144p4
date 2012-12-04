@@ -6,14 +6,16 @@
     </script>
     <script type="text/javascript" src="./dropdown.js"></script>
     <script type="text/javascript" src="./suggestions.js"></script> 
-    <link rel="stylesheet" type="text/css" href="./autosuggest.css" />       
+    <link rel="stylesheet" type="text/css" href="./autosuggest.css" /> 
+    <link media="only screen and (max-device-width: 480px)" 
+    href="iPhone.css" type="text/css" rel="stylesheet" />     
     <title>
         <%= request.getAttribute("title") %>
     </title>
-    <meta name="viewport" content="width=400" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 </head>
 <body>
-	<form name="input" action="search" method="get" autocomplete="off">
+	<form class="sform" name="input" action="search" method="get" autocomplete="off">
 	<%
 	    String q = request.getParameter("q");
 		out.println("Search: <input type=\"text\" id=\"queryTextBox\" name=\"q\" value=\"" + q +"\">");

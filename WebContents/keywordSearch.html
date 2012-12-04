@@ -3,16 +3,18 @@
 	<script type="text/javascript">
         var xmlHttp;
     </script>
+    <link media="only screen and (max-device-width: 480px)" 
+    href="iPhone.css" type="text/css" rel="stylesheet" />    
     <script type="text/javascript" src="./dropdown.js"></script>
     <script type="text/javascript" src="./suggestions.js"></script>
     <link rel="stylesheet" type="text/css" href="./autosuggest.css" />        
-    <meta name="viewport" content="width=400" />
+    <meta name="viewport" content="width=300" width="device-width, initial-scale=1, maximum-scale=1"/>
 
 </head>
 
 <body>
 
-	<form name="input" action="search" method="get" autocomplete="off">
+	<form class="sform" name="input" action="search" method="get" autocomplete="off">
 	Search: <input type="text" id="queryTextBox" name="q">
 
 	<input type="hidden" name="numResultsToSkip" value="0">

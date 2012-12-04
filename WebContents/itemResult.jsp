@@ -1,7 +1,9 @@
 <html>
 <head>
     <title><%= request.getAttribute("title") %></title>
-    <meta name="viewport" content="width=400" />
+    <link media="only screen and (max-device-width: 480px)" 
+    href="iPhone.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
@@ -45,7 +47,7 @@
 </head>
 
 <body onload="myGeocodeFirst()">
-	<form name="input" action="item" method="get" autocomplete="off">
+	<form class ="sform" name="input" action="item" method="get" autocomplete="off">
 	<%
 	    String q = request.getParameter("itemID");
 		out.println("Looked up Item ID: <input type=\"text\" name=\"itemID\" value=\"" + q +"\">");
